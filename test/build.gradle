@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'haoming.com'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile(project(':framework'))
+}
+
+//所有对jar包相关的操作需要定义在jar配置项中
+jar{
+    //声明启动类
+    manifest{
+        attributes "Main-Class":"com.haoming.Application"
+    }
+    //自动打入依赖包
+    from{
+        configurations.compile.collect{
+            it.isDirectory()? it : zipTree(it)
+        }
+    }
+}

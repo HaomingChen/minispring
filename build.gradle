@@ -1,0 +1,23 @@
+//java 插件
+plugins {
+    id 'java'
+}
+
+group 'haoming.com'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+//jar包仓库
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+//配置子模块 子模块会继承父模块的配置
+subprojects {
+
+}
