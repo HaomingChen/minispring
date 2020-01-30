@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class HandlerManager {
     public static List<MappingHandler> mappingHandlerList = new ArrayList<>();
-
     //遍历classList
     public static void resolveMappingHandler(List<Class<?>> cLassList) {
         for (Class<?> cls : cLassList) {
@@ -24,6 +23,7 @@ public class HandlerManager {
                 parseHandlerFromController(cls);
             }
         }
+        System.out.println("Mapping Handler List Size: " + mappingHandlerList.size());
     }
 
     private static void parseHandlerFromController(Class<?> cls) {

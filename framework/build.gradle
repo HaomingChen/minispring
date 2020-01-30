@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'haoming.com'
+group 'com.haoming'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

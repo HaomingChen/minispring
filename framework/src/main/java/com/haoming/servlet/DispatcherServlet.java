@@ -24,9 +24,11 @@ public class DispatcherServlet implements Servlet {
 
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        System.out.println("Request Received");
         for(MappingHandler mappingHandler : HandlerManager.mappingHandlerList){
             try {
                 if(mappingHandler.handle(req, res)){
+                    System.out.println("Handled");
                     return;
                 }
             } catch (IllegalAccessException e) {

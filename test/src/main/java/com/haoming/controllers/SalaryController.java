@@ -1,5 +1,7 @@
 package com.haoming.controllers;
 
+import com.haoming.beans.AutoWired;
+import com.haoming.service.SalaryService;
 import com.haoming.web.mvc.Controller;
 import com.haoming.web.mvc.RequestMapping;
 import com.haoming.web.mvc.RequestParam;
@@ -12,8 +14,13 @@ import com.haoming.web.mvc.RequestParam;
  */
 @Controller
 public class SalaryController {
+
+    @AutoWired
+    private SalaryService salaryService;
+
     @RequestMapping("/get_salary.json")
     public Integer getSalary(@RequestParam("name") String name, @RequestParam("experience") String experience) {
-        return 10000;
+        System.out.println("SSSSSSSSSSSSSSSSSSSSSS");
+        return salaryService.calSalary(Integer.parseInt(experience));
     }
 }

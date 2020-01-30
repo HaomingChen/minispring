@@ -1,5 +1,7 @@
 package com.haoming.web.handler;
 
+import com.haoming.beans.BeanFactory;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -21,16 +23,19 @@ public class MappingHandler {
     private String[] args;
 
     public boolean handle(ServletRequest req, ServletResponse res) throws IllegalAccessException, InstantiationException, InvocationTargetException, IOException {
+        System.out.println("Any Request");
         //若request url匹配
         String requestUri = ((HttpServletRequest) req).getRequestURI();
         if (!uri.equals(requestUri)) {
+            System.out.println("false: url not matched");
             return false;
         }
         Object[] parameters = new Object[args.length];
         for(int i = 0; i < args.length; i++){
             parameters[i] = req.getParameter(args[i]);
         }
-        Object ctl = controller.newInstance();
+        //controller class
+        Object ctl = BeanFactory.getBean(controller);
         Object response = method.invoke(ctl, parameters);
         res.getWriter().println(response.toString());
         return true;
